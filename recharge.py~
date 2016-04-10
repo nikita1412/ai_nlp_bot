@@ -1,0 +1,25 @@
+import wit
+
+if __name__ == '__main__':
+    access_token = 'UTZY736TQK7HYDKLVOIEHHQZBN65KNU4'
+
+  # GET /message to extract intent and entities from user request
+  #    response = wit.message('top up my number with Rs 250', access_token)
+ #   print('/message -> {}'.format(response))
+    #print(wit.message(access_token, 'top up 989898989 with Rs 50'))
+    print("Bot: Hi!")
+    message = raw_input("Bot:Enter your number: \nYou: ")
+    response1 = wit.message(access_token, message)
+
+    """{u'outcomes': [{u'entities': {u'phone_number': [{u'value': u'989898989 '}], 
+    										 u'amount_of_money': [{u'type': u'value', u'unit': u'INR', u'value': 50}]}, 
+    						   u'confidence': 0.535, u'intent': u'phone_recharge', u'_text': u'top up 989898989 with Rs 50'}],
+    			u'msg_id': u'd20f263f-5b4b-45e5-8cf3-a8c1a762fb5e', 
+    			u'_text': u'top up 989898989 with Rs 50'}"""
+    response2 = response1['outcomes']
+    response3 = response2[0]
+    response4 = response3['entities']
+    phone_number = response4['phone_number'][0]['value']
+    print(phone_number)
+    amount_of_money = response4['amount_of_money'][0]['value']
+    print(amount_of_money)
